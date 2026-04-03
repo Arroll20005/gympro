@@ -84,7 +84,7 @@ function GestionClases() {
      <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto', backgroundColor: '#121212', minHeight: '100vh' }}>
         <header style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
           <button
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/dashboard')}
             style={{ 
               padding: '0.5rem 1rem', 
               backgroundColor: 'transparent', 

@@ -76,7 +76,7 @@ function Login() {
 
       // Si login fue exitoso,
       // redirigimos al home.
-      navigate('/');
+      navigate('/dashboard');
 
     } catch (err) {
 

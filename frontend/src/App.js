@@ -35,6 +35,7 @@ import EditarUsuario from './pages/EditarUsuario';
 import EditarClase from './pages/EditarClase';
 import CrearClase from './pages/CrearClase';
 import CrearUsuario from './pages/crearUsuario';
+import LandingPage from './pages/LandingPage';
 
 
 // ===================================================
@@ -74,21 +75,24 @@ function ProtectedRoute({ children }) {
 // DEFINICIÓN DE RUTAS
 // ===================================================
 function AppRoutes() {
-
   return (
     <Routes>
 
-      {/* Ruta pública */}
-      {/* No necesita autenticación */}
+      {/* Ruta pública - Landing Page (accesible para todos) */}
+      <Route
+        path="/"
+        element={<LandingPage />}
+      />
+
+      {/* Ruta pública - Login */}
       <Route
         path="/login"
         element={<Login />}
       />
 
-
       {/* Dashboard protegido */}
       <Route
-        path="/"
+        path="/dashboard"
         element={
           <ProtectedRoute>
             <Dashboard />
@@ -99,89 +103,83 @@ function AppRoutes() {
 
       {/* Página de clases disponibles */}
       {/* Solo usuarios autenticados */}
+ 
+   
+
+
+      {/* Página de reservas del usuario */}
       <Route
-        path="/clases-disponibles"
+        path="/mis-reservas"
         element={
           <ProtectedRoute>
-            <AvailableClasses />
+            <MyReservations />
+          </ProtectedRoute>
+        }
+      />
+      <Route path="/mis-clases" 
+      element={
+        <ProtectedRoute>
+          <MyClasses />
+        </ProtectedRoute>
+      } />
+      
+      {/* Dashboard del entrenador */}
+      <Route
+        path="/dashboard-entrenador"
+        element={
+          <ProtectedRoute>
+            <TrainerDashboard />
           </ProtectedRoute>
         }
       />
 
+      {/* Gestión de usuarios - Solo para administradores */}
+      <Route
+        path="/gestion-usuarios"
+        element={
+          <ProtectedRoute>
+            <GestionUsuarios />
+          </ProtectedRoute>
+        }
+      />
+      {/* Editar usuario - Solo para administradores */}
+      <Route
+        path="/editar-usuario/:id"
+        element={
+          <ProtectedRoute>
+            <EditarUsuario />
+          </ProtectedRoute>
+        }
+      />
+      {/* Editar clase - Solo para administradores */}
+      <Route
+        path="/editar-clase/:id"
+        element={
+          <ProtectedRoute>
+            <EditarClase />
+          </ProtectedRoute>
+        }
+      />
 
-       {/* Página de reservas del usuario */}
-       <Route
-         path="/mis-reservas"
-         element={
-           <ProtectedRoute>
-             <MyReservations />
-           </ProtectedRoute>
-         }
-       />
-       <Route path="/mis-clases" 
-       element={
-         <ProtectedRoute>
-           <MyClasses />
-         </ProtectedRoute>
-       } />
-       
-        {/* Dashboard del entrenador */}
-        <Route
-          path="/dashboard-entrenador"
-          element={
-            <ProtectedRoute>
-              <TrainerDashboard />
-            </ProtectedRoute>
-          }
-        />
-
-        {/* Gestión de usuarios - Solo para administradores */}
-        <Route
-          path="/gestion-usuarios"
-          element={
-            <ProtectedRoute>
-              <GestionUsuarios />
-            </ProtectedRoute>
-          }
-        />
-        {/* Editar usuario - Solo para administradores */}
-        <Route
-          path="/editar-usuario/:id"
-          element={
-            <ProtectedRoute>
-              <EditarUsuario />
-            </ProtectedRoute>
-          }
-        />
-        {/* Editar clase - Solo para administradores */}
-        <Route
-          path="/editar-clase/:id"
-          element={
-            <ProtectedRoute>
-              <EditarClase />
-            </ProtectedRoute>
-          }
-        />
-
-        {/* Gestión de clases - Solo para administradores */}
-        <Route
-          path="/gestion-clases"
-          element={
-            <ProtectedRoute>
-              <GestionClases />
-            </ProtectedRoute>
-          }
-        />
-        {/* Crear clase - Solo para administradores */}
-        <Route
-          path="/crear-clase"
-          element={
-            <ProtectedRoute>
-              <CrearClase />
-            </ProtectedRoute>
-          }
-        />
-         {/* Crear usuario - Solo para administradores */}
+      {/* Gestión de clases - Solo para administradores */}
+      <Route
+        path="/gestion-clases"
+        element={
+          <ProtectedRoute>
+            <GestionClases />
+          </ProtectedRoute>
+        }
+      />
+      {/* Crear clase - Solo para administradores */}
+      <Route
+        path="/crear-clase"
+        element={
+          <ProtectedRoute>
+            <CrearClase />
+          </ProtectedRoute>
+        }
+      />
+       {/* Crear usuario - Solo para administradores */}
     <Route
       path="/crear-usuario"
       element={
@@ -190,13 +188,28 @@ function AppRoutes() {
         </ProtectedRoute>
       }
     />
-
+ 
     </Routes>
-
-   
-
+  
+  
   );
 }
+   
+
+
+      {/* Página de clases disponibles */}
+      {/* Solo usuarios autenticados */}
+      
+      
+
+
+       {/* Página de reservas del usuario */}
+
+ 
+
+     
+       
+
 
 
 // ===================================================
